@@ -1,0 +1,40 @@
+{
+    "add_task": "إضافة مهمة",
+    "add_column": "إضافة عامود", 
+    "delete": "مسح",
+    "edit_task": "تعديل'{taskName}'",
+    "edit_column": "تعديل'{columnName}'", 
+    "edit": "تعديل",
+    "view": "عرض",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "ok": "موافق",
+    "yes": "نعم",
+    "no": "لا",
+    "search": "بحث",
+    "search_bar_placeholder": "ابحث عن مهام بالاسم او الوصف...",
+    "optional": "(إختياري)",
+    "no_tasks_available": "لا توجد مهام متوفرة",
+    "confirmations": {
+        "delete": "هل أنت متأكد انك تود مسح '{title}'؟"
+    },
+    "button_titles": {
+        "light_theme": "الوضع الفاتح",
+        "dark_theme": "الوضع الداكن"
+    },
+    "form_labels": {
+        "name_in_english": "الأسم بالأنجليزية",
+        "name_in_arabic": "الأسم بالعربية",
+        "description": "الوصف",
+        "priority_level": "مستوي الأولوية",
+        "status": "الحالة",
+        "due_date": "تاريخ الإستحقاق",
+        "color": "اللون",
+        "order": "الترتيب"
+    },
+    "validation_msg": {
+        "required": "هذه الخانة مطلوبة",
+        "min":"الحد الأدنى لطول الأحرف المسموح به هو",
+        "max":"الحد الأقصى لطول الأحرف المسموح به هو"
+    }
+}

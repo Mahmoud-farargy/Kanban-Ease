@@ -1,0 +1,40 @@
+{
+    "add_task": "Add Task",
+    "add_column": "Add Column", 
+    "delete": "Delete",
+    "edit_task": "Edit '{taskName}'",
+    "edit_column": "Edit '{columnName}'",
+    "edit": "Edit",
+    "view": "View",
+    "save": "Save",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "yes": "Yes",
+    "no": "No",
+    "search": "Search",
+    "search_bar_placeholder": "Search tasks by name or description...",
+    "optional": "(Optional)",
+    "no_tasks_available": "No tasks available",
+    "confirmations": {
+        "delete": "Are you sure you want to delete '{title}'?"
+    },
+    "button_titles": {
+        "light_theme": "Switch to light mode",
+        "dark_theme": "Switch to dark mode"
+    },
+    "form_labels": {
+        "name_in_english": "Name in English",
+        "name_in_arabic": "Name in Arabic",
+        "description": "Description",
+        "priority_level": "Proirity Level",
+        "status": "Status",
+        "due_date": "Due Date",
+        "color": "Color",
+        "order": "Order"
+    },
+    "validation_msg": {
+        "required": "This field is required",
+        "min":"The minimum length of characters allowed is",
+        "max":"The maximum length of characters allowed is"
+    }
+}

@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .app-container {
+    @apply px-5 sm:px-8 md:px-10 lg:px-[125px] xl:px-[160px] 2xl:px-[240px] 3xl:px-[310px] max-w-[2300px] mx-auto;
+  }
+  .primary-button-bg{
+    @apply bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300  dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800;
+  }
+}
+@layer components {
+  @layer responsive {
+    .disabled {
+      cursor: not-allowed;
+      user-select: none;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .hide-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+  }
+}
+@layer base {
+    html {
+      font-family: "Roboto", Helvetica, sans-serif;
+    }
+}
