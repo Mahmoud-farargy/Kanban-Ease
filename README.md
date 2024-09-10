@@ -23,24 +23,23 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-ToDos: Things that are supposed to be done but I don't have enough time for them:
-- Put each svg icon in a separate component
+
+**ToDos: Extra points to implement but I don't have enough time for them:**
+- Put each svg icon in a separate component to make the code cleaner
 - Add meta tags for better SEO performance
-- Remove the description key and Add description_ar & description_en to the tasks so the user don't get confused when they switch to another languages and see the same description not being updated
-- Globalize a function that can get the name_ar, name_en, and similar keys in a mixin so it be accessed anywhere instead of prop drilling the nameKey computed variable in some components.
+- Remove the description key and Add description_ar & description_en to the task items so the user doesn't get confused when they switch to another language and see the same description not being updated
+- Globalize a function that can get the name_ar, name_en, and similar keys according to the current language in a mixin so it can be accessed anywhere instead of prop drilling the nameKey computed variable in some components.
 
-
-
-How does the columns' data sync?
+**How does the columns' data sync?**
 - On drag and drop change:
 Update the localStorage, and Pinia state with each change
 
 - On refresh:
-When the app mounts (in App.vue) -- check if the localStorage has any stored data. If there is, add it to Pinia Storage
-Before this component mounts (in TodosOrganizer.vue) -- check that pinia has tasks data, if there is, update the component state with it.
+When the app mounts in (App.vue - line 74) -- check if the localStorage has any stored data. If there is, add it to Pinia Storage
+In (TodosOrganizer.vue - line 171) component watch for any data change in Pinia storage and update the component state with it.
 
-How to change the theme or language indirectly?
+**How does the theme or language change indirectly?**
 - On theme or language change:
 Update the localStorage, and Pinia state with each change
 
-- Listen for any change to the theme or language values in the localStorage (in App.vue) and handle the data accordingly. 
+- Listen for any change to the theme or language values in the localStorage in (App.vue- line 87) and handle the data accordingly. 
