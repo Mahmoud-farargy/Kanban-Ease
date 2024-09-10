@@ -122,7 +122,6 @@
         const hasDatePassed = inputDate.isBefore(now);
 
         if(hasDatePassed){
-            console.log("status", status);
             // passed and done
             if(status === 'done'){
                 return "text-green-700 dark:text-green-500";

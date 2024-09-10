@@ -26,26 +26,26 @@
     <Header :nameKey="nameKey" :changeAddColumnModalState="changeAddColumnModalState" />
     <!-- Todos main board -->
     <section
-      class="min-h-[100vh] sm:h-[calc(100vh_-_var(--header-height-desktop)_-_var(--header-margin-bottom-desktop))] px-5">
+      class="min-h-[100vh] h-[calc(100vh_-_var(--header-height-desktop)_-_var(--header-margin-bottom-desktop))]">
       <div
-        class="sm:overflow-x-auto sm:overflow-y-hidden sm:h-full relative w-full sm:hide-scrollbar sm:whitespace-nowrap"
+        class="overflow-x-auto overflow-y-hidden h-full relative w-full hide-scrollbar whitespace-nowrap px-5 sm:px-7"
         ref="scrollContainer" @drag="handleAutoScrollOnDrag">
-        <div class="inline-flex sm:h-full">
+        <div class="inline-flex h-full">
           <!-- Columns -->
-          <div v-if="!areTasksEmpty" class="flex flex-wrap sm:flex-nowrap sm:h-full gap-4">
+          <div v-if="!areTasksEmpty" class="flex flex-nowrap h-full gap-4">
             <div v-for="(column, index) in sortedAndFilteredColumns" :key="column.id"
-              class="sm:h-full w-full sm:w-[var(--task-card-width-mobile)] lg:w-[var(--task-card-width-desktop)]">
+              class="h-full w-[var(--task-card-width-mobile)] lg:w-[var(--task-card-width-desktop)]">
               <div class="mb-2">
                 <ColumnItemHeader :itemTitle="column[nameKey]"
                   :columnTasksCount="(column && column.tasks) ? column.tasks.length : 0"
                   :onEditColumnClick="onEditColumnClick" :onDeleteColumnClick="onDeleteColumnClick" :column="column" />
                 <div :style="{ backgroundColor: column.color }" class="w-full h-[3px]"></div>
               </div>
-              <div class="sm:h-full">
+              <div class="h-full">
                 <Draggable ghost-class="ghost" v-model="columnsOriginalData[index].tasks" @start="onStartPulling()"
                   @end="onFinishPulling()" @update="(e) => onMovingInSameColumn(e, column.id)"
                   @add="(e) => onMovingToAnotherColumn(e, column.id)" group="tasks" handle=".handle"
-                  class="w-full sm:h-full sm:max-h-lvh md:max-h-[100vh] overscroll-none column__scrollbar sm:overflow-y-auto">
+                  class="w-full h-full max-h-lvh md:max-h-[100vh] overscroll-none column__scrollbar overflow-y-auto">
                   <!-- Column tasks -->
                   <TaskItem v-for="(item, index) in column.tasks" :key="item.id" :item="item" :nameKey="nameKey"
                     :index="index" @onEditItem="onEditTask" @onDeleteItem="onDeleteItem" @onViewItem="onViewItem"
@@ -132,7 +132,7 @@ watch(([memoizedSeachValue, memoizedColumnsOriginalData]), ([newSearchVal, newCo
       })
     }
   });
-});
+}, {deep: true});
 
 
 const areTasksEmpty = computed(() => {

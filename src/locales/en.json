@@ -20,7 +20,8 @@
     },
     "button_titles": {
         "light_theme": "Switch to light mode",
-        "dark_theme": "Switch to dark mode"
+        "dark_theme": "Switch to dark mode",
+        "sort_tasks_by_priority": "Sort Tasks by Priority Level"
     },
     "form_labels": {
         "name_in_english": "Name in English",

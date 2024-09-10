@@ -20,7 +20,8 @@
     },
     "button_titles": {
         "light_theme": "الوضع الفاتح",
-        "dark_theme": "الوضع الداكن"
+        "dark_theme": "الوضع الداكن",
+        "sort_tasks_by_priority": "ترتيب المهام حسب الاولوية"
     },
     "form_labels": {
         "name_in_english": "الأسم بالأنجليزية",
