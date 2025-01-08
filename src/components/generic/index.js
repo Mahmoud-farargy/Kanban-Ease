@@ -7,3 +7,4 @@ export { default as DeleteIcon } from "./icons/Delete.vue";
 export { default as ViewIcon } from "./icons/View.vue";
 export { default as TimesIcon } from "./icons/Times.vue";
 export { default as LightIcon } from "./icons/Light.vue";
+export { default as MoveIcon } from "./icons/Move.vue";

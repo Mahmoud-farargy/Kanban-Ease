@@ -1,6 +1,7 @@
 :root{
   --header-height-desktop: 4.563rem;
   --header-margin-bottom-desktop:1.75rem;
+  --column-height: 2.563rem;
   --task-card-width-desktop: 18.5rem;
   --task-card-width-mobile: 12.5rem;
 }

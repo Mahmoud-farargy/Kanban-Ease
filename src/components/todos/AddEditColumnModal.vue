@@ -62,7 +62,7 @@
                 <div>
                     <label for="order" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         {{ $t("form_labels.order") }}
-                        <span class="text-gray-500  dark-gray-300 text-xs font-normal">{{ $t('optional') }}</span>
+                        <span class="text-gray-500 dark:text-gray-200 text-xs font-normal">{{ $t('optional') }}</span>
                     </label>
                     <input v-model="columnform.order" type="number" :min="1" :max="memoizedMaxNumber" name="order"
                         id="order"

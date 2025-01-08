@@ -59,7 +59,7 @@ const VALIDATIONS = {
 };
 
 const useLocalStorage = ({ type, key, value, callBack }) => {
-  const localStorageAppKey = "namaa";
+  const localStorageAppKey = "kanban_ease";
   const global = useGlobalStore();
   switch (lowerString(type)) {
     case "set": {

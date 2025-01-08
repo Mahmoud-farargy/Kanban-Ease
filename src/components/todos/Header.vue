@@ -31,7 +31,7 @@
                         </span>
                     </button>
                     <!-- Sort tasks in each column by priority level -->
-                    <button  @click="sortTasksByPriority" :tooltipTitle="$t('button_titles.sort_tasks_by_priority')" class="relative tooltip inline-flex items-center sm:max-w-max justify-center p-2 text-sm font-medium text-gray-900 rounded-full group bg-gray-200 active:scale-95 dark:bg-gray-500 dark:text-white hover:brightness-95 transition-[filter,transform] duration-150"
+                    <button  @click="sortTasksByPriority" :tooltipTitle="$t('button_titles.sort_tasks_by_priority')" class="relative tooltip inline-flex items-center sm:max-w-max justify-center p-2 text-sm font-medium text-gray-900 rounded-full group dark:hover:bg-gray-500 hover:bg-gray-200 active:scale-95 dark:text-white hover:brightness-95 transition-[filter,transform] duration-150"
                         :aria-label="$t('button_titles.sort_tasks_by_priority')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M14 19h8v-2h-8zm0-5.5h8v-2h-8zM14 8h8V6h-8zM2 12.5C2 8.92 4.92 6 8.5 6H9V4l3 3l-3 3V8h-.5C6 8 4 10 4 12.5S6 17 8.5 17H12v2H8.5C4.92 19 2 16.08 2 12.5"/></svg>
                     </button>
@@ -66,8 +66,8 @@
                 <!-- Theme switcher -->
                 <span>
                     <button v-if="isCurrentThemeDark" :aria-labelledby="$t('button_titles.light_theme')"
-                        :tooltitleTitle="$t('button_titles.light_theme')" type="button" @click="() => switchTheme('light')"
-                        class="hs-dark-mode tooltip font-medium text-gray-800 dark:text-lime-500 rounded-full dark:hover:bg-lime-50 hover:bg-gray-200 focus:outline-none focus:bg-gray-200"
+                        :tooltipTitle="$t('button_titles.light_theme')" type="button" @click="() => switchTheme('light')"
+                        class="hs-dark-mode tooltip font-medium text-gray-800 dark:text-lime-500 rounded-full dark:hover:bg-gray-500 hover:bg-gray-200 focus:outline-none focus:bg-gray-200"
                         data-hs-theme-click-value="dark">
                         <span class="group inline-flex shrink-0 justify-center items-center size-9">
                             <LightIcon />
@@ -75,7 +75,7 @@
                     </button>
                     <button v-else type="button" :aria-labelledby="$t('button_titles.dark_theme')"
                         :tooltipTitle="$t('button_titles.dark_theme')"  @click="() => switchTheme('dark')"
-                        class="block tooltip hs-dark-mode font-medium text-gray-800 dark:text-lime-500 rounded-full dark:hover:bg-lime-50 hover:bg-gray-200 focus:outline-none focus:bg-gray-200"
+                        class="block tooltip hs-dark-mode font-medium text-gray-800 dark:text-lime-500 rounded-full dark:hover:bg-gray-500 hover:bg-gray-200 focus:outline-none focus:bg-gray-200"
                         data-hs-theme-click-value="dark">
                         <span class="group inline-flex shrink-0 justify-center items-center size-9">
                             <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="35" height="35"
@@ -88,7 +88,7 @@
                 </span>
                 <!-- Language switcher -->
                 <button @click="toggleLanguage" :aria-labelledby="languageButtonTitle" :tooltipTitle="languageButtonTitle"
-                    class="hs-dark-mode tooltip font-medium text-gray-800 dark:text-lime-500 dark:hover:bg-lime-50 rounded-full hover:bg-gray-200 focus:outline-none focus:bg-gray-200">
+                    class="hs-dark-mode tooltip font-medium text-gray-800 dark:text-lime-500 dark:hover:bg-gray-500 rounded-full hover:bg-gray-200 focus:outline-none focus:bg-gray-200">
                     <span class="group inline-flex shrink-0 justify-center items-center size-9">
                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="35" height="35"
                             viewBox="0 0 24 24">
@@ -104,10 +104,9 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { Modal, AddIcon, LightIcon } from "@/components/generic";
+import { AddIcon, LightIcon } from "@/components/generic";
 import { useGlobalStore } from "@/store/Modules/global";
 import AddEditTaskModal from "@/components/todos/AddEditTaskModal.vue";
-import { VALIDATIONS } from "@/helpers";
 
 const globalStore = useGlobalStore();
 const isTaskModalOpen = ref(false);

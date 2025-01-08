@@ -1,4 +1,4 @@
-# namaa-advanced-todo
+# kanban-ease
 
 ## Project setup
 ```
@@ -24,14 +24,10 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-**ToDos: Extra points to implement but I don't have enough time for them:**
+**ToDos: Extra points to implement but I don't have enough time for:**
 - Put each svg icon in a separate component to make the code cleaner
 - Add meta tags for better SEO performance
-- Remove the description key and Add description_ar & description_en to the task items so the user doesn't get confused when they switch to another language and see the same description not being updated
 - Globalize a function that can get the name_ar, name_en, and similar keys according to the current language in a mixin, or use a composable or provide and inject so it can be accessed anywhere instead of prop drilling the nameKey computed variable in some components.
-  
-**Note on CSS Styling** <br>
-In the TodosOrganizer.vue component line 261, in the ghost class, the !important properties were used temporarily for emphasis during development, but they are not crucial and should ideally be removed in a final production version.
 
 **How does the columns' data sync?**
 - On drag and drop change:

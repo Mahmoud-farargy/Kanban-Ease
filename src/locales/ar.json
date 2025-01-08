@@ -11,6 +11,7 @@
     "ok": "موافق",
     "yes": "نعم",
     "no": "لا",
+    "move": " تحريك",
     "search": "بحث",
     "search_bar_placeholder": "ابحث عن مهام بالاسم او الوصف...",
     "optional": "(إختياري)",
@@ -21,12 +22,21 @@
     "button_titles": {
         "light_theme": "الوضع الفاتح",
         "dark_theme": "الوضع الداكن",
-        "sort_tasks_by_priority": "ترتيب المهام حسب الاولوية"
+        "sort_tasks_by_priority": "ترتيب جميع المهام حسب الاولوية"
+    },
+    "priorities": {
+        "low": "منخفض",
+        "medium": "متوسط",
+        "high": "عالي",
+        "urgent": "ضروري"
     },
     "form_labels": {
+        "name": "الأسم",
         "name_in_english": "الأسم بالأنجليزية",
         "name_in_arabic": "الأسم بالعربية",
         "description": "الوصف",
+        "description_ar": "الوصف بالعربية",
+        "description_en": "الوصف بالأنجليزية",
         "priority_level": "مستوي الأولوية",
         "status": "الحالة",
         "due_date": "تاريخ الإستحقاق",

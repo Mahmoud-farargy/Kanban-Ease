@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center gap-1 p-1">
-        <span class="flex-1 flex items-center gap-2">
+        <span class="flex-1 flex items-center gap-2 select-none">
             <span class="text-lg text-light-text dark:text-dark-text ellipsis-x1"> {{ props.itemTitle }}</span>
             <span class="text-light-textSecondary dark:text-dark-textSecondary text-sm" >({{
                 props.columnTasksCount
@@ -14,7 +14,7 @@
                 </button>
                 <!-- Dropdown menu -->
                 <div v-if="showDropdown"
-                    class="absolute z-10 right-0 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg">
+                    class="absolute z-[15] right-0 rtl:right-auto rtl:left-0 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg">
                     <ul class="py-1">
                         <li @click="() => {toggleDropdown(); onEditColumnClick(props.column)}" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
                             {{ $t('edit') }}

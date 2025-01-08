@@ -8,7 +8,7 @@
         <!-- Name in English -->
         <div>
           <label for="name_en" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{
-    $t("form_labels.name_in_english") }}
+            $t("form_labels.name_in_english") }}
             <strong class="text-red-500">*</strong>
           </label>
           <input v-model="taskform.name_en" type="text" name="name_en" id="name_en"
@@ -41,18 +41,36 @@
             </p>
           </div>
         </div>
-        <!-- Description -->
+        <!-- Description in English -->
         <div>
-          <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{
-    $t("form_labels.description") }}
+          <label for="descriptionEn" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{
+            $t("form_labels.description_en") }}
             <strong class="text-red-500">*</strong>
           </label>
-          <textarea v-model="taskform.description" type="text" name="description" id="description"
+          <textarea v-model="taskform.description_en" type="text" name="description_en" id="descriptionEn"
             class="bg-gray-50 border outline-lime-500 transition-colors duration-150 border-gray-300 text-gray-900 text-sm min-h-[5.7rem] max-h-[12.5rem] resize-y rounded-lg focus:ring-lime-500 focus:border-lime-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            placeholder="Describe the task..." />
+            placeholder="Describe the task" />
           <!-- error -->
-          <div v-if="v$ && v$.description && v$.description.$errors">
-            <p v-for="error of v$.description.$errors" :key="error.$uid"
+          <div v-if="v$ && v$.description_en && v$.description_en.$errors">
+            <p v-for="error of v$.description_en.$errors" :key="error.$uid"
+              class="error_message p-4 mb-4 flex flex-column text-sm mt-2 text-red-800 rounded-lg bg-red-50"
+              role="alert">
+              {{ error.$message }}
+            </p>
+          </div>
+        </div>
+        <!-- Description In Arabic -->
+        <div>
+          <label for="descriptionAr" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{
+            $t("form_labels.description_ar") }}
+            <strong class="text-red-500">*</strong>
+          </label>
+          <textarea v-model="taskform.description_ar" type="text" name="description_ar" id="descriptionAr"
+            class="bg-gray-50 border outline-lime-500 transition-colors duration-150 border-gray-300 text-gray-900 text-sm min-h-[5.7rem] max-h-[12.5rem] resize-y rounded-lg focus:ring-lime-500 focus:border-lime-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            placeholder="قم بوصف المهمة" />
+          <!-- error -->
+          <div v-if="v$ && v$.description_ar && v$.description_ar.$errors">
+            <p v-for="error of v$.description_ar.$errors" :key="error.$uid"
               class="error_message p-4 mb-4 flex flex-column text-sm mt-2 text-red-800 rounded-lg bg-red-50"
               role="alert">
               {{ error.$message }}
@@ -128,7 +146,7 @@
           {{ props.operationType === "edit" ? $t("save") : $t("ok") }}
         </button>
         <button @click="() => props.changeTaskModalState(false)" type="button"
-          class="text-primary bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary/20 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2 hover:text-primary/90 focus:z-10">
+          class="text-primary dark:text-white dark:bg-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary/20 rounded-lg border dark:border-gray-700 border-gray-200 text-sm font-medium px-5 py-2 hover:text-primary/90">
           {{ $t("cancel") }}
         </button>
       </div>
@@ -179,7 +197,8 @@ const props = defineProps({
 const taskform = ref({
   name_en: "",
   name_ar: "",
-  description: "",
+  description_ar: "",
+  description_en: "",
   priority_level: "",
   status: "",
   due_date: "",
@@ -192,7 +211,10 @@ const rules = {
   name_ar: {
     ...VALIDATIONS.name,
   },
-  description: {
+  description_ar: {
+    ...VALIDATIONS.description,
+  },
+  description_en: {
     ...VALIDATIONS.description,
   },
   priority_level: {

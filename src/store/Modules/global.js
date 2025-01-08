@@ -6,6 +6,11 @@ const updateAllColumnsData = (updatedColumnsList) => {
   useLocalStorage({ type: "set", key: "mainData", value: updatedColumnsList });
 };
 
+const generateLocalizedKeyName = (store, keyName = 'name') => {
+  const isArabic = store.localStorageCopy?.language === "ar";
+  return `${keyName}_${isArabic ? "ar" : "en"}`;
+} 
+
 export const useGlobalStore = defineStore("global", {
   state: () => {
     return {
@@ -183,8 +188,11 @@ export const useGlobalStore = defineStore("global", {
     getColumnsData: (store) => store.localStorageCopy?.mainData || [],
     getNameKey: (store) => {
       // switches between name_ar & name_en based on the current language
-      const isArabic = store.localStorageCopy?.language === "ar";
-      return `name_${isArabic ? "ar" : "en"}`;
+      return generateLocalizedKeyName(store, 'name');
+    },
+    getDescriptionKey: (store) => {
+      // switches between description_ar & description_en based on the current language
+      return generateLocalizedKeyName(store, 'description');
     },
     getSearchValue: (store) => store.searchValue || "",
     getCurrentLanguage: (store) => store.localStorageCopy?.language || "en",

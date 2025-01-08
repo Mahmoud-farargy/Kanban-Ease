@@ -1,5 +1,5 @@
 <template>
-  <Page title="Todo Organizer" description="">
+  <Page title="Todo Organizer" description="Organize your tasks effortlessly with our intuitive drag-and-drop to-do list app! Easily create, prioritize, and manage your daily tasks by simply dragging them into customizable categories. Stay productive with real-time updates, color-coded labels, and smooth transitions that make task management feel seamless.">
     <!-- Confirmation dialog -->
     <ConfirmationDialog ref="confirmationDialogRef" :confirmationDialogData="confirmationDialogData" />
 
@@ -19,35 +19,36 @@
       @onSubmission="onColumnSubmission" :currentColumnsLength="currentColumnsLength" />
 
     <!-- View Task modal -->
-    <ViewTaskModal :nameKey="nameKey" :isTaskViewOpen="isTaskViewOpen" :changeTaskViewerState="changeTaskViewerState"
+    <ViewTaskModal :nameKey="nameKey" :descriptionKey="descriptionKey" :isTaskViewOpen="isTaskViewOpen" :changeTaskViewerState="changeTaskViewerState"
       :viewItemData="viewItemData" :currentLanguage="currentLanguage" />
 
     <!-- Header - Controls  -->
     <Header :nameKey="nameKey" :changeAddColumnModalState="changeAddColumnModalState" />
     <!-- Todos main board -->
     <section
-      class="min-h-[100vh] h-[calc(100vh_-_var(--header-height-desktop)_-_var(--header-margin-bottom-desktop))]">
+      class="h-[calc(100vh_-_var(--header-height-desktop)_-_var(--header-margin-bottom-desktop))]">
       <div
-        class="overflow-x-auto overflow-y-hidden h-full relative w-full hide-scrollbar whitespace-nowrap px-5 sm:px-7"
+        class="overflow-x-auto md:overflow-y-hidden h-full overscroll-x-none relative w-full hide-scrollbar whitespace-nowrap px-5 sm:px-7"
         ref="scrollContainer" @drag="handleAutoScrollOnDrag">
         <div class="inline-flex h-full">
           <!-- Columns -->
           <div v-if="!areTasksEmpty" class="flex flex-nowrap h-full gap-4">
             <div v-for="(column, index) in sortedAndFilteredColumns" :key="column.id"
               class="h-full w-[var(--task-card-width-mobile)] lg:w-[var(--task-card-width-desktop)]">
-              <div class="mb-2">
+              <div class="mb-2 sticky z-[5] top-0 bg-light-background dark:bg-dark-background max-h-[var(--column-height)]">
                 <ColumnItemHeader :itemTitle="column[nameKey]"
                   :columnTasksCount="(column && column.tasks) ? column.tasks.length : 0"
                   :onEditColumnClick="onEditColumnClick" :onDeleteColumnClick="onDeleteColumnClick" :column="column" />
                 <div :style="{ backgroundColor: column.color }" class="w-full h-[3px]"></div>
               </div>
-              <div class="h-full">
+              <div class="h-full min-h-[4.75rem]">
                 <Draggable ghost-class="ghost" v-model="columnsOriginalData[index].tasks" @start="onStartPulling()"
                   @end="onFinishPulling()" @update="(e) => onMovingInSameColumn(e, column.id)"
                   @add="(e) => onMovingToAnotherColumn(e, column.id)" group="tasks" handle=".handle"
-                  class="w-full h-full max-h-lvh md:max-h-[100vh] overscroll-none column__scrollbar overflow-y-auto">
+                  class="w-full h-full max-h-lvh lg:h-[calc(100%-var(--column-height)-0.8rem)] overscroll-none column__scrollbar overflow-y-auto">
                   <!-- Column tasks -->
                   <TaskItem v-for="(item, index) in column.tasks" :key="item.id" :item="item" :nameKey="nameKey"
+                    :descriptionKey="descriptionKey"
                     :index="index" @onEditItem="onEditTask" @onDeleteItem="onDeleteItem" @onViewItem="onViewItem"
                     :currentLanguage="currentLanguage" :isPullingCard="isPullingCard" />
                 </Draggable>
@@ -127,34 +128,31 @@ watch(([memoizedSeachValue, memoizedColumnsOriginalData]), ([newSearchVal, newCo
         const lowerCasedSearchValue = lowerString(newSearchVal);
         const isNameArMatchingASearchValue = lowerString(task.name_ar).includes(lowerCasedSearchValue);
         const isNameEnMatchingASearchValue = lowerString(task.name_en).includes(lowerCasedSearchValue);
-        const isDescriptionMatchingASearchValue = lowerString(task.description).includes(lowerCasedSearchValue);
-        return isNameArMatchingASearchValue || isNameEnMatchingASearchValue || isDescriptionMatchingASearchValue;
+        const isDescriptionArMatchingASearchValue = lowerString(task.description_ar).includes(lowerCasedSearchValue);
+        const isDescriptionENMatchingASearchValue = lowerString(task.description_en).includes(lowerCasedSearchValue);
+        return isNameArMatchingASearchValue || isNameEnMatchingASearchValue || isDescriptionArMatchingASearchValue || isDescriptionENMatchingASearchValue;
       })
     }
   });
 }, {deep: true});
 
 
-const areTasksEmpty = computed(() => {
-  return sortedAndFilteredColumns.value?.length <=0;
-});
+const areTasksEmpty = computed(() => sortedAndFilteredColumns.value?.length <=0);
 
 const currentLanguage = computed(() => globalStore?.getCurrentLanguage);
 
-const nameKey = computed(() => {
-  // switches between name_ar & name_en based on the current language
-  const isArabic = currentLanguage.value === 'ar';
-  return `name_${isArabic ? 'ar' : 'en'}`;
-});
+const nameKey = computed(() => globalStore.getNameKey);
 
-const currentColumnsLength = computed(() => {
-  return globalStore.getColumnsData?.length
-})
+const descriptionKey = computed(() => globalStore.getDescriptionKey);
+
+const currentColumnsLength = computed(() => globalStore.getColumnsData?.length);
+
+const isDesktop = computed(() => window?.innerWidth >= 768);
 
 const handleAutoScrollOnDrag = (event) => {
   const container = scrollContainer.value;
-  const threshold = 100; // Distance from the edge to trigger scroll
-  const scrollSpeed = 10; // Scroll speed adjustment
+  const threshold = isDesktop ? 100 : 30; // Distance from the edge to trigger scroll
+  const scrollSpeed = isDesktop ? 10 : 3; // Scroll speed adjustment
 
   if (event.clientX - container.getBoundingClientRect().left < threshold) {
     // Scroll left if dragged near the left edge
@@ -259,8 +257,9 @@ const onColumnSubmission = (item, type) => {
 </script>
 
 <style scoped>
-.ghost {
-  background-color: #ddd !important;
-  opacity: 0.5 !important;
+/* The ghost-class must be a class  */
+.ghost { 
+  background-color: #ddd;
+  opacity: 0.5;
 }
 </style>

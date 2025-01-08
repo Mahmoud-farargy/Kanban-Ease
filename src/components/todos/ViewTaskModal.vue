@@ -2,35 +2,28 @@
   <Modal :isOpen="isTaskViewOpen" :changeModalState="changeTaskViewerState" :modalTitle="memoizedModalTitle">
     <!-- modal body -->
     <div class="space-y-4 p-4 md:p-5">
-      <!-- {{ viewItemData }} -->
       <!-- Task Name -->
       <div>
-        <h3 class="text-gray-700 dark:text-gray-400/90 font-medium">{{ $t("form_labels.name_in_english") }}</h3>
-        <p class="text-gray-900 dark:text-gray-200">{{ props.viewItemData.name_en }}</p>
-      </div>
-
-      <!-- Task Name in Arabic -->
-      <div>
-        <h3 class="text-gray-700 dark:text-gray-400/90 font-medium">{{ $t("form_labels.name_in_arabic") }}</h3>
-        <p class="text-gray-900 dark:text-gray-200">{{ props.viewItemData.name_ar }}</p>
+        <h3 class="text-gray-700 dark:text-gray-400/90 font-medium">{{ $t("form_labels.name") }}</h3>
+        <p class="text-gray-900 dark:text-gray-200">{{ props.viewItemData[nameKey] }}</p>
       </div>
 
       <!-- Description -->
       <div>
         <h3 class="text-gray-700 dark:text-gray-400/90 font-medium">{{ $t("form_labels.description") }}</h3>
-        <p class="text-gray-900 dark:text-gray-200">{{ props.viewItemData.description }}</p>
+        <p class="text-gray-900 dark:text-gray-200">{{ props.viewItemData[descriptionKey] }}</p>
       </div>
 
       <!-- Priority Level -->
       <div>
         <h3 class="text-gray-700 dark:text-gray-400/90 font-medium">{{ $t("form_labels.priority_level") }}</h3>
-        <p :class="`${priorityClass} capitalize`.trim()">{{ props.viewItemData.priority_level }}</p>
+        <p :class="`${priorityClass} capitalize`.trim()">{{ $t(`priorities.${props.viewItemData.priority_level}`) }}</p>
       </div>
 
       <!-- Status -->
       <div>
         <h3 class="text-gray-700 dark:text-gray-400/90 font-medium">{{ $t("form_labels.status") }}</h3>
-        <p class="text-gray-900 dark:text-gray-200">{{ props.viewItemData.status }}</p>
+        <p class="text-gray-900 dark:text-gray-200 capitalize">{{ props.viewItemData.status }}</p>
       </div>
 
       <!-- Due Date -->
@@ -73,7 +66,12 @@ const props = defineProps({
   nameKey: {
     type: String,
     required: true,
-    default: "en"
+    default: "name_en"
+  },
+  descriptionKey: {
+    type: String,
+    required: true,
+    default: "description_en"
   },
   currentLanguage: {
     type: String,
